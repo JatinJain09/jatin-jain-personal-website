@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jatin Jain - Personal Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jatin Jain - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,107 +16,46 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
+      --primary-color: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary-color: #8b5cf6;
+      --accent-color: #ec4899;
+      --text-dark: #1e293b;
+      --text-gray: #64748b;
+      --bg-light: #f8fafc;
             --bg-white: #ffffff;
-            --bg-gray: #f9fafb;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    html {
+      scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-attachment: fixed;
             color: var(--text-dark);
             line-height: 1.6;
-            background-color: var(--bg-white);
-        }
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        nav .container {
-            max-width: 1200px;
+    .container {
+      max-width: 1000px;
             margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      background: var(--bg-white);
+      border-radius: 24px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s 0.2s backwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s 0.4s backwards;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes fadeInUp {
+    @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -123,384 +66,790 @@
             }
         }
 
-        /* Sections */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    /* Header Section */
+    .header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      padding: 4rem 2.5rem 3rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: var(--text-dark);
-        }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
 
-        /* About Section */
-        .about {
-            background: var(--bg-gray);
-        }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
+      color: rgba(255, 255, 255, 0.9);
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
+
+    .header-content {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .name {
+      font-size: 2.75rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .headline {
+      font-size: 1.3rem;
+      font-weight: 600;
+      opacity: 0.95;
+      margin-bottom: 0.5rem;
+    }
+
+    .location {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem 1.4rem;
+      border-radius: 14px;
+      text-decoration: none;
             color: white;
-        }
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 1rem;
+    }
 
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+    .contact-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
 
-        .skill-card {
-            background: var(--bg-gray);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .contact-link i {
+      font-size: 1.1rem;
+    }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
+    /* Content Section */
+    .content {
+      padding: 3.5rem 2.5rem;
+    }
 
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
+    .section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: slideUp 0.6s ease-out forwards;
+    }
 
-        .skill-card h3 {
+    .section:nth-child(1) { animation-delay: 0.1s; }
+    .section:nth-child(2) { animation-delay: 0.2s; }
+    .section:nth-child(3) { animation-delay: 0.3s; }
+    .section:nth-child(4) { animation-delay: 0.4s; }
+    .section:nth-child(5) { animation-delay: 0.5s; }
+    .section:nth-child(6) { animation-delay: 0.6s; }
+    .section:nth-child(7) { animation-delay: 0.7s; }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+
+    .section-title i {
+      color: var(--primary-color);
             font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
+    }
 
-        .skill-card p {
-            color: var(--text-light);
-        }
+    /* About Section */
+    .summary {
+      font-size: 1.15rem;
+      color: var(--text-gray);
+      line-height: 1.9;
+      background: var(--bg-light);
+      padding: 2rem;
+      border-radius: 16px;
+      border-left: 5px solid var(--primary-color);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        /* Projects Section */
-        .projects {
-            background: var(--bg-gray);
-        }
+    .summary:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-md);
+    }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* Experience & Education Items */
+    .experience-list,
+    .education-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
             gap: 2rem;
         }
 
-        .project-card {
-            background: white;
-            border-radius: 15px;
+    .experience-item,
+    .education-item {
+      display: flex;
+      gap: 1.75rem;
+      padding: 2rem;
+      background: var(--bg-light);
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid var(--border-color);
+      position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
+    .experience-item::before,
+    .education-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+      transform: scaleY(0);
+      transition: transform 0.4s ease;
+    }
 
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    .experience-item:hover::before,
+    .education-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .experience-item:hover,
+    .education-item:hover {
+      transform: translateY(-6px) translateX(4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
+    }
+
+    .company-logo,
+    .edu-logo {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
             color: white;
-        }
+      font-weight: 800;
+      font-size: 1.75rem;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease;
+    }
 
-        .project-content {
-            padding: 1.5rem;
-        }
+    .experience-item:hover .company-logo,
+    .education-item:hover .edu-logo {
+      transform: rotate(5deg) scale(1.1);
+    }
 
-        .project-content h3 {
-            font-size: 1.5rem;
+    .exp-main,
+    .edu-main {
+      flex: 1;
+    }
+
+    .job-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
-        .project-content p {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
+    .company {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+    }
 
-        .project-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-        }
+    .exp-date,
+    .edu-date {
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
 
-        .project-link:hover {
-            text-decoration: underline;
-        }
+    .exp-location {
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
 
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    .exp-desc {
+      font-size: 1.05rem;
+      color: var(--text-gray);
+      line-height: 1.8;
+      margin-top: 0.75rem;
+    }
 
-        .contact-content p {
+    .exp-bullets {
+      margin-top: 1rem;
+    }
+
+    .exp-bullets ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .exp-bullets li {
+      padding: 0.6rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--text-gray);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+    }
+
+    .exp-bullets li:hover {
+      color: var(--primary-color);
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0.5rem;
+      color: var(--primary-color);
+      font-weight: bold;
             font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
         }
 
-        .social-links {
+    /* Skills, Certifications, Awards */
+    .skills-list,
+    .cert-list,
+    .awards-list {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+    }
 
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
+    .skill,
+    .cert,
+    .award {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-        }
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+      cursor: default;
+    }
 
-        .social-link:hover {
-            transform: scale(1.1);
-        }
+    .skill:hover,
+    .cert:hover,
+    .award:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
 
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
+    /* Interests Section */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .interest-card {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 16px;
             text-align: center;
-            padding: 2rem;
-        }
+      transition: all 0.3s ease;
+      border: 2px solid var(--border-color);
+    }
 
-        /* Responsive */
+    .interest-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-color);
+    }
+
+    .interest-card i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+    }
+
+    .interest-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
+      body {
+        padding: 1rem 0.5rem;
+      }
 
-            .hero-content p {
-                font-size: 1.2rem;
-            }
+      .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 1.5rem 2rem;
+      }
 
-            .about-content {
-                grid-template-columns: 1fr;
-            }
+      .profile-pic {
+        width: 140px;
+        height: 140px;
+        font-size: 3.5rem;
+      }
 
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
+      .name {
+        font-size: 2.25rem;
+      }
+
+      .headline {
+        font-size: 1.1rem;
+      }
+
+      .content {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .experience-item,
+      .education-item {
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.5rem;
+      }
+
+      .company-logo,
+      .edu-logo {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+      }
+
+      .contact-links {
+        justify-content: center;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 2rem 1rem 1.5rem;
+      }
+
+      .content {
+        padding: 2rem 1rem;
+      }
+
+      .name {
+        font-size: 1.9rem;
+      }
+
+      .headline {
+        font-size: 1rem;
+      }
+
+      .profile-pic {
+        width: 120px;
+        height: 120px;
+        font-size: 3rem;
             }
 
             .section-title {
-                font-size: 2rem;
-            }
+        font-size: 1.35rem;
+      }
 
-            .skills-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+      .experience-item,
+      .education-item {
+        padding: 1.25rem;
+      }
+    }
+
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
         <div class="container">
-            <a href="#" class="logo">Jatin Jain</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <!-- Header Section -->
+    <div class="header">
+      <div class="profile-pic">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="header-content">
+        <h1 class="name">Jatin Jain</h1>
+        <div class="headline">Mesa'29 | IIMB'28 (DBE)</div>
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Hyderabad, Telangana, India</span>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Jatin Jain</h1>
-            <p>Full Stack Developer & Creative Problem Solver</p>
-            <a href="#contact" class="cta-button">Get In Touch</a>
+        <div class="contact-links">
+          <a href="mailto:jainjatin2525@gmail.com" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+          </a>
+          <a href="https://www.linkedin.com/in/jainjatin2525" target="_blank" class="contact-link">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
         </div>
-    </section>
+            </div>
+            </div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>
-                    Hello! I'm Jatin Jain, a passionate developer with a love for creating 
-                    innovative solutions and beautiful user experiences.
-                </p>
-                <p>
-                    I specialize in full-stack development, bringing ideas to life through 
-                    clean code and modern technologies. When I'm not coding, you can find me 
-                    exploring new technologies and contributing to open-source projects.
-                </p>
-                <p>
-                    My goal is to build products that make a difference and solve real-world 
-                    problems while delivering exceptional user experiences.
-                </p>
-            </div>
-            <div class="about-image">
-                <span>👨‍💻</span>
-            </div>
+    <!-- Content Section -->
+    <div class="content">
+      <!-- About Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-user-circle"></i>
+          About
+        </h2>
+        <div class="summary">
+          Young entrepreneur on a mission to build something big, while giving back to society through Satya Foundation.<br><br>
+          Passionate about diplomacy and dialogue.<br><br>
+          With a strong foundation in public relations, management and entrepreneurship.
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon">💻</div>
-                <h3>Frontend Development</h3>
-                <p>React, Vue, Angular, HTML5, CSS3, JavaScript</p>
+      <!-- Work Experience Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-briefcase"></i>
+          Work Experience
+        </h2>
+        <ul class="experience-list">
+          <li class="experience-item">
+            <div class="company-logo">V</div>
+            <div class="exp-main">
+              <div class="job-title">Founder</div>
+              <div class="company">Vizor</div>
+              <div class="exp-date">
+                <i class="far fa-calendar"></i>
+                April 2025 - July 2025 (4 months)
+              </div>
+              <div class="exp-location">
+                <i class="fas fa-map-marker-alt"></i>
+                Bengaluru, Karnataka, India
+              </div>
+              <div class="exp-desc">Accelerating the Creator Economy in India</div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon">⚙️</div>
-                <h3>Backend Development</h3>
-                <p>Node.js, Python, PHP, Express, RESTful APIs</p>
+          </li>
+
+          <li class="experience-item">
+            <div class="company-logo">PC</div>
+            <div class="exp-main">
+              <div class="job-title">Head of Operations</div>
+              <div class="company">Project Clay</div>
+              <div class="exp-date">
+                <i class="far fa-calendar"></i>
+                February 2025 - June 2025 (5 months)
+              </div>
+              <div class="exp-bullets">
+                <ul>
+                  <li>Launched the "Ivy 10" program, driving 5x revenue growth.</li>
+                  <li>Oversaw all operations end-to-end; closing clients, managing teams, and ensuring seamless execution across functions.</li>
+                  <li>Built and executed a creative social media strategy, leading to high-impact campaigns and over 1M views that boosted brand visibility.</li>
+                  <li>Scaled Project Clay's presence in Indian colleges, managing nationwide admissions and mentor teams.</li>
+                  <li>Designed and optimized student onboarding, increasing engagement and satisfaction.</li>
+                  <li>Elevated brand image and digital reach, positioning Project Clay as a top choice for mentorship.</li>
+                </ul>
+              </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon">🗄️</div>
-                <h3>Database</h3>
-                <p>MySQL, PostgreSQL, MongoDB, Redis</p>
+          </li>
+
+          <li class="experience-item">
+            <div class="company-logo">SF</div>
+            <div class="exp-main">
+              <div class="job-title">Founder</div>
+              <div class="company">Satya Foundation</div>
+              <div class="exp-date">
+                <i class="far fa-calendar"></i>
+                August 2023 - May 2025 (1 year 10 months)
+              </div>
+              <div class="exp-desc">
+                "Satya Foundation" - A beacon of compassion and care. Dedicated to making a meaningful impact, the foundation stands as a guiding light for those in need. Our mission is simple yet profound: to extend a helping hand to old age homes, orphanages, and cow shelters. Through our commitment, we strive to bring warmth to the hearts of the elderly, hope to the lives of the young, and shelter to our gentle bovine companions.
+              </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon">☁️</div>
-                <h3>Cloud & DevOps</h3>
-                <p>AWS, Docker, Kubernetes, CI/CD</p>
+          </li>
+
+          <li class="experience-item">
+            <div class="company-logo">DPS</div>
+            <div class="exp-main">
+              <div class="job-title">Head of Marketing</div>
+              <div class="company">Delhi Public School, Nacharam</div>
+              <div class="exp-date">
+                <i class="far fa-calendar"></i>
+                August 2024 - January 2025 (6 months)
+              </div>
+              <div class="exp-location">
+                <i class="fas fa-map-marker-alt"></i>
+                Hyderabad, Telangana, India
+              </div>
+              <div class="exp-desc">
+                Proud to have served as the Marketing Head for IIFBM 2024, where I led strategic initiatives to enhance brand visibility and engagement. Through innovative campaigns and collaborative efforts, we successfully elevated the event's profile, driving record participation and fostering meaningful connections.
+              </div>
+            </div>
+          </li>
+
+          <li class="experience-item">
+            <div class="company-logo">DPS</div>
+            <div class="exp-main">
+              <div class="job-title">Student Council Member</div>
+              <div class="company">Delhi Public School, Nacharam</div>
+              <div class="exp-date">
+                <i class="far fa-calendar"></i>
+                March 2016 - February 2025 (9 years)
             </div>
         </div>
+          </li>
+        </ul>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image">🚀</div>
-                <div class="project-content">
-                    <h3>E-Commerce Platform</h3>
-                    <p>A full-featured e-commerce solution with payment integration and admin dashboard.</p>
-                    <a href="#" class="project-link">View Project →</a>
+      <!-- Education Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          Education
+        </h2>
+        <ul class="education-list">
+          <li class="education-item">
+            <div class="edu-logo">MSB</div>
+            <div class="edu-main">
+              <div class="job-title">Bachelors in Business Management & Entrepreneurship</div>
+              <div class="company">Mesa School of Business</div>
+              <div class="edu-date">
+                <i class="far fa-calendar"></i>
+                August 2025 - August 2029
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-image">📱</div>
-                <div class="project-content">
-                    <h3>Task Management App</h3>
-                    <p>Collaborative task management application with real-time updates and notifications.</p>
-                    <a href="#" class="project-link">View Project →</a>
+          </li>
+
+          <li class="education-item">
+            <div class="edu-logo">IIM</div>
+            <div class="edu-main">
+              <div class="job-title">Bachelors in Digital Business and Entrepreneurship (DBE)</div>
+              <div class="company">Indian Institute of Management Bangalore</div>
+              <div class="edu-date">
+                <i class="far fa-calendar"></i>
+                August 2025 - August 2028
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-image">🎨</div>
-                <div class="project-content">
-                    <h3>Design Portfolio</h3>
-                    <p>Creative portfolio website showcasing design work with interactive galleries.</p>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
+          </li>
+
+          <li class="education-item">
+            <div class="edu-logo">DPS</div>
+            <div class="edu-main">
+              <div class="company">Delhi Public School - India</div>
             </div>
-        </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Skills Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-star"></i>
+          Top Skills
+        </h2>
+        <ul class="skills-list">
+          <li class="skill">Sales Management</li>
+          <li class="skill">Customer Relationship Management (CRM)</li>
+          <li class="skill">Team Building</li>
+        </ul>
+      </section>
+
+      <!-- Certifications Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-certificate"></i>
+          Certifications
+        </h2>
+        <ul class="cert-list">
+          <li class="cert">NSE Academy's Certification in Financial Markets</li>
+          <li class="cert">Forward Learning Program Apprenticeship</li>
+        </ul>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-content">
-            <p>
-                I'm always interested in new opportunities and exciting projects. 
-                Let's connect and build something amazing together!
-            </p>
-            <div class="social-links">
-                <a href="#" class="social-link">📧</a>
-                <a href="#" class="social-link">💼</a>
-                <a href="#" class="social-link">🐙</a>
-                <a href="#" class="social-link">🐦</a>
+      <!-- Honors & Awards Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-trophy"></i>
+          Honors & Awards
+        </h2>
+        <ul class="awards-list">
+          <li class="award">Best Delegate</li>
+          <li class="award">High Commendation</li>
+          <li class="award">Best Delegate</li>
+          <li class="award">Outstanding Leader</li>
+        </ul>
+      </section>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Jatin Jain. All rights reserved.</p>
-    </footer>
+  <!-- Scroll to Top Button -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Active navigation on scroll
+    // Scroll to top functionality
+    const scrollTopBtn = document.getElementById('scrollTop');
+    
         window.addEventListener('scroll', () => {
-            let sections = document.querySelectorAll('section');
-            let navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Add intersection observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
         });
     </script>
 </body>
 </html>
-
