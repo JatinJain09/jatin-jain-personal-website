@@ -3,853 +3,445 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jatin Jain - Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Jatin Jain</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-      --primary-color: #6366f1;
-      --primary-dark: #4f46e5;
-      --secondary-color: #8b5cf6;
-      --accent-color: #ec4899;
-      --text-dark: #1e293b;
-      --text-gray: #64748b;
-      --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-      --border-color: #e2e8f0;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-        }
-
-        body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      background-attachment: fixed;
-            color: var(--text-dark);
-            line-height: 1.6;
-      padding: 2rem 1rem;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.5;
+      padding: 0;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
-      max-width: 1000px;
-            margin: 0 auto;
-      background: var(--bg-white);
-      border-radius: 24px;
-      box-shadow: var(--shadow-xl);
-      overflow: hidden;
-      animation: fadeIn 0.8s ease-out;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
     }
-
-    @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
     /* Header Section */
     .header {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-      padding: 4rem 2.5rem 3rem;
-      color: white;
       display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      position: relative;
-      overflow: hidden;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #e5e5e5;
     }
 
-    .header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: rotate 20s linear infinite;
-    }
-
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .profile-pic {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 5px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-      color: rgba(255, 255, 255, 0.9);
-      position: relative;
-      z-index: 1;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .profile-pic:hover {
-      transform: scale(1.05);
-    }
-
-    .header-content {
+    .header-left {
       flex: 1;
-      position: relative;
-      z-index: 1;
     }
 
     .name {
       font-size: 2.75rem;
-      font-weight: 900;
+      font-weight: 700;
       margin-bottom: 0.5rem;
-      letter-spacing: -1px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .headline {
-      font-size: 1.3rem;
-      font-weight: 600;
-      opacity: 0.95;
-      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+      color: #000000;
+      line-height: 1.2;
     }
 
     .location {
-      font-size: 1.05rem;
-      opacity: 0.9;
-      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: #666666;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
-    .contact-links {
+    .location i {
+      font-size: 0.9rem;
+    }
+
+    .bio {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+
+    .achievements {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .achievements li {
+      font-size: 1rem;
+      color: #333333;
+      margin-bottom: 0.4rem;
+      padding-left: 1rem;
+      position: relative;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+    }
+
+    .achievements li::before {
+      content: "-";
+      position: absolute;
+      left: 0;
+      color: #666666;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 2rem;
+      border: 2px solid #e5e5e5;
+    }
+
+    /* Social Links */
+    .social-links {
       display: flex;
-      gap: 1rem;
       flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 2rem 0 3rem 0;
     }
 
-    .contact-link {
+    .social-link {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      padding: 0.75rem 1.4rem;
-      border-radius: 14px;
+      padding: 0.7rem 1.1rem;
+      background: #ffffff;
+      border-radius: 12px;
       text-decoration: none;
-            color: white;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      font-size: 1rem;
+      color: #000000;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
 
-    .contact-link:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    .social-link:hover {
+      background: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
     }
 
-    .contact-link i {
-      font-size: 1.1rem;
+    .social-link i {
+      font-size: 1.2rem;
+      flex-shrink: 0;
     }
 
-    /* Content Section */
-    .content {
-      padding: 3.5rem 2.5rem;
+    .social-link .fa-x-twitter {
+      color: #000000;
     }
 
-    .section {
-      margin-bottom: 4rem;
-      opacity: 0;
-      animation: slideUp 0.6s ease-out forwards;
+    .social-link .fa-instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .section:nth-child(1) { animation-delay: 0.1s; }
-    .section:nth-child(2) { animation-delay: 0.2s; }
-    .section:nth-child(3) { animation-delay: 0.3s; }
-    .section:nth-child(4) { animation-delay: 0.4s; }
-    .section:nth-child(5) { animation-delay: 0.5s; }
-    .section:nth-child(6) { animation-delay: 0.6s; }
-    .section:nth-child(7) { animation-delay: 0.7s; }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .social-link .fa-linkedin {
+      color: #0077B5;
     }
 
-    .section:last-child {
-      margin-bottom: 0;
+    .social-link .fa-youtube {
+      color: #FF0000;
     }
 
+    .social-link .fa-github {
+      color: #000000;
+    }
+
+    .social-link .fa-spotify {
+      color: #1DB954;
+    }
+
+    /* Section Titles */
     .section-title {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 1.75rem;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #000000;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* Ventures Section */
+    .software-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .software-item {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      position: relative;
-      padding-bottom: 1rem;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background 0.15s ease;
     }
 
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-      border-radius: 2px;
+    .software-item:hover {
+      background: #fafafa;
+      margin: 0 -0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
 
-    .section-title i {
-      color: var(--primary-color);
-            font-size: 1.5rem;
+    .software-item:last-child {
+      border-bottom: none;
     }
 
-    /* About Section */
-    .summary {
-      font-size: 1.15rem;
-      color: var(--text-gray);
-      line-height: 1.9;
-      background: var(--bg-light);
-      padding: 2rem;
-      border-radius: 16px;
-      border-left: 5px solid var(--primary-color);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .summary:hover {
-      transform: translateX(5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    /* Experience & Education Items */
-    .experience-list,
-    .education-list {
-      list-style: none;
+    .item-left {
       display: flex;
-      flex-direction: column;
-            gap: 2rem;
-        }
-
-    .experience-item,
-    .education-item {
-      display: flex;
-      gap: 1.75rem;
-      padding: 2rem;
-      background: var(--bg-light);
-      border-radius: 20px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 2px solid var(--border-color);
-      position: relative;
-            overflow: hidden;
-    }
-
-    .experience-item::before,
-    .education-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
-      transform: scaleY(0);
-      transition: transform 0.4s ease;
-    }
-
-    .experience-item:hover::before,
-    .education-item:hover::before {
-      transform: scaleY(1);
-    }
-
-    .experience-item:hover,
-    .education-item:hover {
-      transform: translateY(-6px) translateX(4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--primary-color);
-    }
-
-    .company-logo,
-    .edu-logo {
-      width: 80px;
-      height: 80px;
-      min-width: 80px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-      font-weight: 800;
-      font-size: 1.75rem;
-      box-shadow: var(--shadow-md);
-      transition: transform 0.3s ease;
-    }
-
-    .experience-item:hover .company-logo,
-    .education-item:hover .edu-logo {
-      transform: rotate(5deg) scale(1.1);
-    }
-
-    .exp-main,
-    .edu-main {
+      align-items: center;
+      gap: 1.25rem;
       flex: 1;
     }
 
-    .job-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-    .company {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 0.75rem;
-    }
-
-    .exp-date,
-    .edu-date {
-      font-size: 0.95rem;
-      color: var(--text-gray);
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 500;
-    }
-
-    .exp-location {
-      font-size: 0.95rem;
-      color: var(--text-gray);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 500;
-    }
-
-    .exp-desc {
-      font-size: 1.05rem;
-      color: var(--text-gray);
-      line-height: 1.8;
-      margin-top: 0.75rem;
-    }
-
-    .exp-bullets {
-      margin-top: 1rem;
-    }
-
-    .exp-bullets ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .exp-bullets li {
-      padding: 0.6rem 0;
-      padding-left: 2rem;
-      position: relative;
-      color: var(--text-gray);
-      line-height: 1.8;
-      font-size: 1.05rem;
-      transition: color 0.3s ease;
-    }
-
-    .exp-bullets li:hover {
-      color: var(--primary-color);
-    }
-
-    .exp-bullets li::before {
-      content: '▸';
-      position: absolute;
-      left: 0.5rem;
-      color: var(--primary-color);
-      font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-    /* Skills, Certifications, Awards */
-    .skills-list,
-    .cert-list,
-    .awards-list {
-            display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      list-style: none;
-    }
-
-    .skill,
-    .cert,
-    .award {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 25px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-sm);
-      cursor: default;
-    }
-
-    .skill:hover,
-    .cert:hover,
-    .award:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* Interests Section */
-    .interests-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    .interest-card {
-      background: var(--bg-light);
-      padding: 1.5rem;
-      border-radius: 16px;
-            text-align: center;
-      transition: all 0.3s ease;
-      border: 2px solid var(--border-color);
-    }
-
-    .interest-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--primary-color);
-    }
-
-    .interest-card i {
-      font-size: 2.5rem;
-      color: var(--primary-color);
-      margin-bottom: 0.75rem;
-    }
-
-    .interest-card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    /* Responsive Design */
-        @media (max-width: 768px) {
-      body {
-        padding: 1rem 0.5rem;
-      }
-
-      .header {
-        flex-direction: column;
-        text-align: center;
-        padding: 3rem 1.5rem 2rem;
-      }
-
-      .profile-pic {
-        width: 140px;
-        height: 140px;
-        font-size: 3.5rem;
-      }
-
-      .name {
-        font-size: 2.25rem;
-      }
-
-      .headline {
-        font-size: 1.1rem;
-      }
-
-      .content {
-        padding: 2.5rem 1.5rem;
-      }
-
-      .experience-item,
-      .education-item {
-        flex-direction: column;
-        gap: 1.25rem;
-        padding: 1.5rem;
-      }
-
-      .company-logo,
-      .edu-logo {
-        width: 70px;
-        height: 70px;
-        font-size: 1.5rem;
-      }
-
-      .contact-links {
-        justify-content: center;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .header {
-        padding: 2rem 1rem 1.5rem;
-      }
-
-      .content {
-        padding: 2rem 1rem;
-      }
-
-      .name {
-        font-size: 1.9rem;
-      }
-
-      .headline {
-        font-size: 1rem;
-      }
-
-      .profile-pic {
-        width: 120px;
-        height: 120px;
-        font-size: 3rem;
-            }
-
-            .section-title {
-        font-size: 1.35rem;
-      }
-
-      .experience-item,
-      .education-item {
-        padding: 1.25rem;
-      }
-    }
-
-    /* Scroll to top button */
-    .scroll-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    .item-icon {
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-lg);
-      z-index: 1000;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #ffffff;
+      flex-shrink: 0;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-color: #f5f5f5;
     }
 
-    .scroll-top.visible {
-      opacity: 1;
-      visibility: visible;
+    .item-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
-    .scroll-top:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-xl);
+    .item-name {
+      font-size: 1rem;
+      color: #000000;
+      font-weight: 400;
+      text-decoration: none;
+      letter-spacing: -0.01em;
     }
-    </style>
+
+    .item-name:hover {
+      text-decoration: underline;
+    }
+
+    .item-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .item-year {
+      font-size: 0.9rem;
+      color: #666666;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .item-arrow {
+      color: #999999;
+      font-size: 0.8rem;
+    }
+
+    /* Icon Colors - Fallback when logo images don't load */
+    .icon-vizor { background: #6366f1; }
+    .icon-projectclay { background: #f59e0b; }
+    .icon-satya { background: #10b981; }
+    .icon-dps { background: #3b82f6; }
+    .icon-mesa { background: #8b5cf6; }
+    .icon-iim { background: #ef4444; }
+
+    /* Sections */
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+
+      .header {
+        flex-direction: column;
+      }
+
+      .profile-pic {
+        margin-left: 0;
+        margin-top: 1.5rem;
+        align-self: flex-start;
+      }
+
+      .name {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+
+      .social-links {
+        gap: 0.5rem;
+      }
+
+      .social-link {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+
+      .name {
+        font-size: 1.75rem;
+      }
+
+      .bio {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-        <div class="container">
+  <div class="container">
     <!-- Header Section -->
     <div class="header">
-      <div class="profile-pic">
-        <i class="fas fa-user"></i>
-      </div>
-      <div class="header-content">
+      <div class="header-left">
         <h1 class="name">Jatin Jain</h1>
-        <div class="headline">Mesa'29 | IIMB'28 (DBE)</div>
         <div class="location">
-          <i class="fas fa-map-marker-alt"></i>
+          <i class="fas fa-globe"></i>
           <span>Hyderabad, Telangana, India</span>
         </div>
-        <div class="contact-links">
-          <a href="mailto:jainjatin2525@gmail.com" class="contact-link">
-            <i class="fas fa-envelope"></i>
-            <span>Email</span>
-          </a>
-          <a href="https://www.linkedin.com/in/jainjatin2525" target="_blank" class="contact-link">
-            <i class="fab fa-linkedin"></i>
-            <span>LinkedIn</span>
-          </a>
+        <div class="bio">
+          I'm an entrepreneur, developer & founder from India
         </div>
-            </div>
-            </div>
+        <ul class="achievements">
+          <li>I build and grow software companies</li>
+          <li>Co-founder @ Vizor (accelerating Creator Economy)</li>
+          <li>Head of Operations @ Project Clay</li>
+        </ul>
+      </div>
+      <div class="profile-pic-container">
+        <img src="images/profile.jpg" alt="Jatin Jain" class="profile-pic" onerror="this.style.display='none';">
+      </div>
+    </div>
 
-    <!-- Content Section -->
-    <div class="content">
-      <!-- About Section -->
-      <section class="section">
-        <h2 class="section-title">
-          <i class="fas fa-user-circle"></i>
-          About
-        </h2>
-        <div class="summary">
-          Young entrepreneur on a mission to build something big, while giving back to society through Satya Foundation.<br><br>
-          Passionate about diplomacy and dialogue.<br><br>
-          With a strong foundation in public relations, management and entrepreneurship.
-        </div>
+    <!-- Social Links -->
+    <div class="social-links">
+      <a href="https://x.com/jatinsinghix" target="_blank" class="social-link">
+        <i class="fab fa-x-twitter"></i>
+        <span>@jatinsinghix</span>
+      </a>
+      <a href="https://www.instagram.com/jatin.singhi/" target="_blank" class="social-link">
+        <i class="fab fa-instagram"></i>
+        <span>@jatin.singhi</span>
+      </a>
+      <a href="https://www.linkedin.com/in/jainjatin2525/" target="_blank" class="social-link">
+        <i class="fab fa-linkedin"></i>
+        <span>@jainjatin2525</span>
+      </a>
+    </div>
+
+    <!-- Ventures Section -->
+    <section class="section">
+      <h2 class="section-title">Ventures</h2>
+      <ul class="software-list">
+        <li class="software-item">
+          <div class="item-left">
+            <div class="item-icon icon-vizor">
+              <img src="images/vizor-logo.png" alt="Vizor" onerror="this.style.display='none'; this.parentElement.innerHTML='V';">
+            </div>
+            <a href="https://vizor.in" target="_blank" class="item-name">vizor.in</a>
+          </div>
+          <div class="item-right">
+            <span class="item-year">2025</span>
+            <i class="fas fa-chevron-down item-arrow"></i>
+          </div>
+        </li>
+        <li class="software-item">
+          <div class="item-left">
+            <div class="item-icon icon-projectclay">
+              <img src="images/projectclay-logo.png" alt="Project Clay" onerror="this.style.display='none'; this.parentElement.innerHTML='PC';">
+            </div>
+            <a href="https://projectclay.com" target="_blank" class="item-name">projectclay.com</a>
+          </div>
+          <div class="item-right">
+            <span class="item-year">2025</span>
+            <i class="fas fa-chevron-down item-arrow"></i>
+          </div>
+        </li>
+      </ul>
     </section>
 
-      <!-- Work Experience Section -->
-      <section class="section">
-        <h2 class="section-title">
-          <i class="fas fa-briefcase"></i>
-          Work Experience
-        </h2>
-        <ul class="experience-list">
-          <li class="experience-item">
-            <div class="company-logo">V</div>
-            <div class="exp-main">
-              <div class="job-title">Founder</div>
-              <div class="company">Vizor</div>
-              <div class="exp-date">
-                <i class="far fa-calendar"></i>
-                April 2025 - July 2025 (4 months)
-              </div>
-              <div class="exp-location">
-                <i class="fas fa-map-marker-alt"></i>
-                Bengaluru, Karnataka, India
-              </div>
-              <div class="exp-desc">Accelerating the Creator Economy in India</div>
+    <!-- Education Section -->
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+      <ul class="software-list">
+        <li class="software-item">
+          <div class="item-left">
+            <div class="item-icon icon-mesa">
+              <img src="images/mesa-logo.png" alt="Mesa School" onerror="this.style.display='none'; this.parentElement.innerHTML='MSB';">
             </div>
-          </li>
-
-          <li class="experience-item">
-            <div class="company-logo">PC</div>
-            <div class="exp-main">
-              <div class="job-title">Head of Operations</div>
-              <div class="company">Project Clay</div>
-              <div class="exp-date">
-                <i class="far fa-calendar"></i>
-                February 2025 - June 2025 (5 months)
-              </div>
-              <div class="exp-bullets">
-                <ul>
-                  <li>Launched the "Ivy 10" program, driving 5x revenue growth.</li>
-                  <li>Oversaw all operations end-to-end; closing clients, managing teams, and ensuring seamless execution across functions.</li>
-                  <li>Built and executed a creative social media strategy, leading to high-impact campaigns and over 1M views that boosted brand visibility.</li>
-                  <li>Scaled Project Clay's presence in Indian colleges, managing nationwide admissions and mentor teams.</li>
-                  <li>Designed and optimized student onboarding, increasing engagement and satisfaction.</li>
-                  <li>Elevated brand image and digital reach, positioning Project Clay as a top choice for mentorship.</li>
-                </ul>
-              </div>
+            <span class="item-name">Mesa School of Business</span>
+          </div>
+          <div class="item-right">
+            <span class="item-year">2025-2029</span>
+            <i class="fas fa-chevron-down item-arrow"></i>
+          </div>
+        </li>
+        <li class="software-item">
+          <div class="item-left">
+            <div class="item-icon icon-iim">
+              <img src="images/iimb-logo.png" alt="IIM Bangalore" onerror="this.style.display='none'; this.parentElement.innerHTML='IIM';">
             </div>
-          </li>
-
-          <li class="experience-item">
-            <div class="company-logo">SF</div>
-            <div class="exp-main">
-              <div class="job-title">Founder</div>
-              <div class="company">Satya Foundation</div>
-              <div class="exp-date">
-                <i class="far fa-calendar"></i>
-                August 2023 - May 2025 (1 year 10 months)
-              </div>
-              <div class="exp-desc">
-                "Satya Foundation" - A beacon of compassion and care. Dedicated to making a meaningful impact, the foundation stands as a guiding light for those in need. Our mission is simple yet profound: to extend a helping hand to old age homes, orphanages, and cow shelters. Through our commitment, we strive to bring warmth to the hearts of the elderly, hope to the lives of the young, and shelter to our gentle bovine companions.
-              </div>
+            <span class="item-name">Indian Institute of Management Bangalore</span>
+          </div>
+          <div class="item-right">
+            <span class="item-year">2025-2028</span>
+            <i class="fas fa-chevron-down item-arrow"></i>
+          </div>
+        </li>
+        <li class="software-item">
+          <div class="item-left">
+            <div class="item-icon icon-dps">
+              <img src="images/dps-logo.png" alt="DPS" onerror="this.style.display='none'; this.parentElement.innerHTML='DPS';">
             </div>
-          </li>
-
-          <li class="experience-item">
-            <div class="company-logo">DPS</div>
-            <div class="exp-main">
-              <div class="job-title">Head of Marketing</div>
-              <div class="company">Delhi Public School, Nacharam</div>
-              <div class="exp-date">
-                <i class="far fa-calendar"></i>
-                August 2024 - January 2025 (6 months)
-              </div>
-              <div class="exp-location">
-                <i class="fas fa-map-marker-alt"></i>
-                Hyderabad, Telangana, India
-              </div>
-              <div class="exp-desc">
-                Proud to have served as the Marketing Head for IIFBM 2024, where I led strategic initiatives to enhance brand visibility and engagement. Through innovative campaigns and collaborative efforts, we successfully elevated the event's profile, driving record participation and fostering meaningful connections.
-              </div>
-            </div>
-          </li>
-
-          <li class="experience-item">
-            <div class="company-logo">DPS</div>
-            <div class="exp-main">
-              <div class="job-title">Student Council Member</div>
-              <div class="company">Delhi Public School, Nacharam</div>
-              <div class="exp-date">
-                <i class="far fa-calendar"></i>
-                March 2016 - February 2025 (9 years)
-            </div>
-        </div>
-          </li>
-        </ul>
+            <span class="item-name">Delhi Public School, Nacharam</span>
+          </div>
+          <div class="item-right">
+            <span class="item-year">2016-2025</span>
+            <i class="fas fa-chevron-down item-arrow"></i>
+          </div>
+        </li>
+      </ul>
     </section>
 
-      <!-- Education Section -->
-      <section class="section">
-        <h2 class="section-title">
-          <i class="fas fa-graduation-cap"></i>
-          Education
-        </h2>
-        <ul class="education-list">
-          <li class="education-item">
-            <div class="edu-logo">MSB</div>
-            <div class="edu-main">
-              <div class="job-title">Bachelors in Business Management & Entrepreneurship</div>
-              <div class="company">Mesa School of Business</div>
-              <div class="edu-date">
-                <i class="far fa-calendar"></i>
-                August 2025 - August 2029
-                </div>
-            </div>
-          </li>
-
-          <li class="education-item">
-            <div class="edu-logo">IIM</div>
-            <div class="edu-main">
-              <div class="job-title">Bachelors in Digital Business and Entrepreneurship (DBE)</div>
-              <div class="company">Indian Institute of Management Bangalore</div>
-              <div class="edu-date">
-                <i class="far fa-calendar"></i>
-                August 2025 - August 2028
-                </div>
-            </div>
-          </li>
-
-          <li class="education-item">
-            <div class="edu-logo">DPS</div>
-            <div class="edu-main">
-              <div class="company">Delhi Public School - India</div>
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Skills Section -->
-      <section class="section">
-        <h2 class="section-title">
-          <i class="fas fa-star"></i>
-          Top Skills
-        </h2>
-        <ul class="skills-list">
-          <li class="skill">Sales Management</li>
-          <li class="skill">Customer Relationship Management (CRM)</li>
-          <li class="skill">Team Building</li>
-        </ul>
-      </section>
-
-      <!-- Certifications Section -->
-      <section class="section">
-        <h2 class="section-title">
-          <i class="fas fa-certificate"></i>
-          Certifications
-        </h2>
-        <ul class="cert-list">
-          <li class="cert">NSE Academy's Certification in Financial Markets</li>
-          <li class="cert">Forward Learning Program Apprenticeship</li>
-        </ul>
-    </section>
-
-      <!-- Honors & Awards Section -->
-      <section class="section">
-        <h2 class="section-title">
-          <i class="fas fa-trophy"></i>
-          Honors & Awards
-        </h2>
-        <ul class="awards-list">
-          <li class="award">Best Delegate</li>
-          <li class="award">High Commendation</li>
-          <li class="award">Best Delegate</li>
-          <li class="award">Outstanding Leader</li>
-        </ul>
-      </section>
-            </div>
-        </div>
-
-  <!-- Scroll to Top Button -->
-  <div class="scroll-top" id="scrollTop">
-    <i class="fas fa-arrow-up"></i>
   </div>
-
-    <script>
-    // Scroll to top functionality
-    const scrollTopBtn = document.getElementById('scrollTop');
-    
-        window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        scrollTopBtn.classList.add('visible');
-      } else {
-        scrollTopBtn.classList.remove('visible');
-      }
-    });
-
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // Add intersection observer for animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
-        });
-    </script>
 </body>
 </html>
