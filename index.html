@@ -181,15 +181,13 @@
 
     .software-item {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       padding: 1rem 0;
       border-bottom: 1px solid #f0f0f0;
-      cursor: pointer;
       transition: background 0.15s ease;
     }
 
-    .software-item:hover {
+    .item-header:hover {
       background: #fafafa;
       margin: 0 -0.5rem;
       padding-left: 0.5rem;
@@ -198,6 +196,64 @@
 
     .software-item:last-child {
       border-bottom: none;
+    }
+
+    .item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      width: 100%;
+      padding: 0.5rem 0;
+      transition: background 0.15s ease;
+    }
+
+    .item-description {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 0 0 5rem;
+      margin-top: 0;
+    }
+
+    .item-description.active {
+      max-height: 500px;
+      padding: 1rem 0 0 5rem;
+    }
+
+    .item-description ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .item-description li {
+      font-size: 0.95rem;
+      color: #666666;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .item-description li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #999999;
+      font-weight: bold;
+    }
+
+    .item-description li:last-child {
+      margin-bottom: 0;
+    }
+
+    .software-item.active .item-arrow {
+      transform: rotate(180deg);
+    }
+
+    .item-arrow {
+      transition: transform 0.3s ease;
     }
 
     .item-left {
@@ -393,27 +449,44 @@
       <h2 class="section-title">Ventures</h2>
       <ul class="software-list">
         <li class="software-item">
-          <div class="item-left">
-            <div class="item-icon">
-              <img src="images/vizor-logo.png" alt="Vizor">
+          <div class="item-header" onclick="toggleDropdown(this)">
+            <div class="item-left">
+              <div class="item-icon">
+                <img src="images/projectclay-logo.png" alt="Project Clay">
+              </div>
+              <a href="https://projectclay.com" target="_blank" class="item-name">projectclay.com</a>
             </div>
-            <a href="https://vizor.in" target="_blank" class="item-name">vizor.in</a>
+            <div class="item-right">
+              <span class="item-year">2025</span>
+              <i class="fas fa-chevron-down item-arrow"></i>
+            </div>
           </div>
-          <div class="item-right">
-            <span class="item-year">2025</span>
-            <i class="fas fa-chevron-down item-arrow"></i>
+          <div class="item-description">
+            <ul>
+              <li>Launched the "Ivy 10" program, driving 5x revenue growth.</li>
+              <li>Oversaw all operations end-to-end; closing clients, managing teams, and ensuring seamless execution across functions.</li>
+              <li>Built and executed a creative social media strategy, leading to high-impact campaigns and over 5M views that boosted brand visibility.</li>
+            </ul>
           </div>
         </li>
         <li class="software-item">
-          <div class="item-left">
-            <div class="item-icon">
-              <img src="images/projectclay-logo.png" alt="Project Clay">
+          <div class="item-header" onclick="toggleDropdown(this)">
+            <div class="item-left">
+              <div class="item-icon">
+                <img src="images/vizor-logo.png" alt="Vizor">
+              </div>
+              <a href="https://vizor.in" target="_blank" class="item-name">vizor.in</a>
             </div>
-            <a href="https://projectclay.com" target="_blank" class="item-name">projectclay.com</a>
+            <div class="item-right">
+              <span class="item-year">2025</span>
+              <i class="fas fa-chevron-down item-arrow"></i>
+            </div>
           </div>
-          <div class="item-right">
-            <span class="item-year">2025</span>
-            <i class="fas fa-chevron-down item-arrow"></i>
+          <div class="item-description">
+            <ul>
+              <li>Scaled to 400 users with 6 paid users.</li>
+              <li>Accelerating the Creator Economy in India.</li>
+            </ul>
           </div>
         </li>
       </ul>
@@ -451,5 +524,17 @@
     </section>
 
   </div>
+
+  <script>
+    function toggleDropdown(header) {
+      const item = header.closest('.software-item');
+      const description = item.querySelector('.item-description');
+      const arrow = item.querySelector('.item-arrow');
+      
+      // Toggle active class
+      item.classList.toggle('active');
+      description.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
