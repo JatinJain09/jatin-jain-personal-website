@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Green shield background -->
+  <path d="M50 5 L90 15 L90 55 Q90 90 50 95 Q10 90 10 55 L10 15 Z" fill="#1a6e1a" stroke="#0d4d0d" stroke-width="2"/>
+  
+  <!-- Inner white area -->
+  <path d="M50 12 L83 20 L83 52 Q83 82 50 87 Q17 82 17 52 L17 20 Z" fill="#ffffff"/>
+  
+  <!-- Torch flame (orange/yellow) -->
+  <ellipse cx="50" cy="28" rx="7" ry="10" fill="#ff4500"/>
+  <ellipse cx="50" cy="25" rx="4" ry="6" fill="#ffd700"/>
+  
+  <!-- Torch stem -->
+  <rect x="48" y="38" width="4" height="18" rx="1" fill="#1a6e1a"/>
+  
+  <!-- Hand holding torch -->
+  <ellipse cx="50" cy="58" rx="10" ry="5" fill="#f5c9b8"/>
+  
+  <!-- Laurel leaves (simplified) -->
+  <path d="M25 40 Q30 50 25 65" stroke="#1a6e1a" stroke-width="2" fill="none"/>
+  <path d="M75 40 Q70 50 75 65" stroke="#1a6e1a" stroke-width="2" fill="none"/>
+  
+  <!-- Text -->
+  <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="6" font-weight="bold" fill="#1a6e1a">DELHI PUBLIC SCHOOL</text>
+</svg>
