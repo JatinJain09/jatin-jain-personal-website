@@ -1,14 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- IIMB distinctive red curved wave pattern -->
-  <g fill="#c41e3a">
+  <!-- Red semi-circular background -->
+  <path d="M10 50 Q10 10 50 10 Q90 10 90 50 L90 60 Q90 100 50 100 Q10 100 10 60 Z" fill="#c41e3a"/>
+  
+  <!-- White wavy horizontal lines radiating outward like a fan -->
+  <g stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round">
     <!-- Top curve -->
-    <path d="M15 25 Q35 10 50 25 Q65 40 85 25 L85 35 Q65 50 50 35 Q35 20 15 35 Z"/>
+    <path d="M20 20 Q30 15 40 20 Q50 25 60 20 Q70 15 80 20"/>
     <!-- Second curve -->
-    <path d="M15 40 Q35 25 50 40 Q65 55 85 40 L85 50 Q65 65 50 50 Q35 35 15 50 Z"/>
+    <path d="M15 30 Q28 22 42 30 Q55 38 68 30 Q82 22 95 30"/>
     <!-- Third curve -->
-    <path d="M15 55 Q35 40 50 55 Q65 70 85 55 L85 65 Q65 80 50 65 Q35 50 15 65 Z"/>
+    <path d="M12 40 Q28 30 48 40 Q60 50 75 40 Q88 30 98 40"/>
     <!-- Fourth curve -->
-    <path d="M15 70 Q35 55 50 70 Q65 85 85 70 L85 80 Q65 95 50 80 Q35 65 15 80 Z"/>
+    <path d="M10 50 Q30 38 50 50 Q65 62 85 50 Q95 38 100 50"/>
+    <!-- Fifth curve -->
+    <path d="M8 60 Q32 46 52 60 Q68 74 88 60 Q96 46 100 60"/>
+    <!-- Sixth curve -->
+    <path d="M6 70 Q35 54 54 70 Q70 86 90 70 Q98 54 100 70"/>
   </g>
 </svg>
-
