@@ -1,22 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- Red rounded square background -->
-  <rect x="5" y="5" width="90" height="90" rx="22" ry="22" fill="#dc2626"/>
+  <!-- Red rounded square background with shadow effect -->
+  <defs>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" rx="18" ry="18" fill="#dc2626" filter="url(#shadow)"/>
   
-  <!-- Horizontal line above m -->
-  <rect x="28" y="32" width="44" height="7" rx="3.5" fill="#ffffff"/>
+  <!-- Horizontal line above H -->
+  <rect x="30" y="30" width="40" height="5" rx="2.5" fill="#ffffff"/>
   
-  <!-- Stylized lowercase m - cleaner version -->
-  <path d="M22 48 
-           L22 80 
-           L32 80 
-           L32 62 
-           L42 62 
-           L42 80 
-           L52 80 
-           L52 48 
-           L42 48 
-           L42 60 
-           L32 60 
-           L32 48 
+  <!-- Stylized uppercase H -->
+  <path d="M25 38 
+           L25 78 
+           L33 78 
+           L33 58 
+           L67 58 
+           L67 78 
+           L75 78 
+           L75 38 
+           L67 38 
+           L67 53 
+           L33 53 
+           L33 38 
            Z" fill="#ffffff"/>
 </svg>
