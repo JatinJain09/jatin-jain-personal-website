@@ -183,7 +183,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.75rem 0;
+      padding: 1rem 0;
       border-bottom: 1px solid #f0f0f0;
       cursor: pointer;
       transition: background 0.15s ease;
@@ -203,27 +203,27 @@
     .item-left {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1rem;
       flex: 1;
     }
 
     .item-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
-      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: #666666;
       flex-shrink: 0;
       overflow: hidden;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
-      background-color: #f5f5f5;
+      background-repeat: no-repeat;
+      background-color: transparent;
       position: relative;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
 
     .item-icon img {
@@ -231,17 +231,10 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      border-radius: 50%;
-      padding: 10px;
+      border-radius: 0;
+      padding: 0;
       box-sizing: border-box;
       background-color: transparent;
-    }
-    
-    /* Specific padding for education logos */
-    .icon-mesa img,
-    .icon-iim img,
-    .icon-dps img {
-      padding: 8px;
     }
 
     .item-name {
@@ -275,20 +268,14 @@
     }
 
     /* Icon Colors - Fallback when logo images don't load */
-    .icon-vizor { background: #6366f1; }
-    .icon-projectclay { background: #f59e0b; }
-    .icon-satya { background: #10b981; }
-    .icon-dps { 
-      background: #3b82f6; 
-      background-color: #3b82f6;
-    }
-    .icon-mesa { 
-      background: #8b5cf6; 
-      background-color: #8b5cf6;
-    }
+    .icon-vizor,
+    .icon-projectclay,
+    .icon-satya,
+    .icon-dps,
+    .icon-mesa,
     .icon-iim { 
-      background: #ef4444; 
-      background-color: #ef4444;
+      background-color: #f5f5f5;
+      border-radius: 12px;
     }
     
 
@@ -398,8 +385,8 @@
       <ul class="software-list">
         <li class="software-item">
           <div class="item-left">
-            <div class="item-icon icon-vizor">
-              <img src="images/vizor-logo.png" alt="Vizor" onerror="this.style.display='none'; this.parentElement.innerHTML='V';">
+            <div class="item-icon">
+              <img src="images/vizor-logo.png" alt="Vizor">
             </div>
             <a href="https://vizor.in" target="_blank" class="item-name">vizor.in</a>
           </div>
@@ -410,8 +397,8 @@
         </li>
         <li class="software-item">
           <div class="item-left">
-            <div class="item-icon icon-projectclay">
-              <img src="images/projectclay-logo.png" alt="Project Clay" onerror="this.style.display='none'; this.parentElement.innerHTML='PC';">
+            <div class="item-icon">
+              <img src="images/projectclay-logo.png" alt="Project Clay">
             </div>
             <a href="https://projectclay.com" target="_blank" class="item-name">projectclay.com</a>
           </div>
@@ -429,8 +416,8 @@
       <ul class="software-list">
         <li class="software-item">
           <div class="item-left">
-            <div class="item-icon icon-mesa">
-              <img src="images/mesa-logo.png" alt="Mesa School" onerror="this.style.display='none'; this.parentElement.innerHTML='MSB';">
+            <div class="item-icon">
+              <img src="images/mesa-logo.png" alt="Mesa School of Business">
             </div>
             <span class="item-name">Mesa School of Business</span>
           </div>
@@ -441,8 +428,8 @@
         </li>
         <li class="software-item">
           <div class="item-left">
-            <div class="item-icon icon-iim">
-              <img src="images/iimb-logo.png" alt="IIM Bangalore" onerror="this.style.display='none'; this.parentElement.innerHTML='IIM';">
+            <div class="item-icon">
+              <img src="images/iimb-logo.png" alt="IIM Bangalore">
             </div>
             <span class="item-name">Indian Institute of Management Bangalore</span>
           </div>
@@ -453,8 +440,8 @@
         </li>
         <li class="software-item">
           <div class="item-left">
-            <div class="item-icon icon-dps">
-              <img src="images/dps-logo.png" alt="DPS" onerror="this.style.display='none'; this.parentElement.innerHTML='DPS';">
+            <div class="item-icon">
+              <img src="images/dps-logo.png" alt="Delhi Public School">
             </div>
             <span class="item-name">Delhi Public School, Nacharam</span>
           </div>
