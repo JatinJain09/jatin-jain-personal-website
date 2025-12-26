@@ -576,7 +576,7 @@
     }
 
     // Typewriter animation function
-    function typeWriter(element, text, speed = 30, delay = 0) {
+    function typeWriter(element, text, speed = 10, delay = 0) {
       return new Promise((resolve) => {
         setTimeout(() => {
           element.textContent = '';
@@ -610,13 +610,17 @@
         el.style.visibility = 'hidden';
       });
       
-      // Animate each element with staggered delays
+      // Animate all elements in parallel with small staggered delays for visual effect
+      const promises = [];
       for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
         const text = element.getAttribute('data-typewriter');
-        const delay = i * 150; // Stagger animations by 150ms
-        await typeWriter(element, text, 30, delay);
+        const delay = i * 30; // Reduced to 30ms for faster start
+        promises.push(typeWriter(element, text, 8, delay));
       }
+      
+      // Wait for all animations to complete (should be within 3 seconds)
+      await Promise.all(promises);
     });
   </script>
 </body>
