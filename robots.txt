@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jatinsinghi.com/sitemap.xml
+
