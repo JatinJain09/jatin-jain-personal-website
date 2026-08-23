@@ -1,0 +1,676 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   site.css - the only stylesheet written for this site.
+
+   Everything above it in the cascade (tokens, base, keys, card, pill) is a
+   verbatim copy of the Klay design system out of `klay code/site/src/styles`.
+   Nothing here redefines a token or overrides a Klay component; it only
+   assembles them into the shapes this page needs - topbar, hero, the venture
+   and education rows, footer.
+
+   Klay's mobile.css is deliberately NOT vendored (it is app-chrome specific),
+   so the responsive rules live at the bottom of this file instead.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── topbar ────────────────────────────────────────────────────────────── */
+/* The hairline appears on SCROLL rather than sitting there from the start,
+   so a hero running to the top isn't cut by a line with nothing above it. */
+
+.ga-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--ga-topbar-h);
+  background: var(--ga-topbar-glass);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ga-topbar {
+    transition: border-color var(--ga-dur-base) var(--ga-ease-out);
+  }
+}
+
+.ga-topbar[data-scrolled="true"] {
+  border-bottom-color: var(--ga-divider);
+}
+
+.ga-topbar-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--ga-space-4);
+  height: 100%;
+  width: 100%;
+  max-width: var(--ga-topbar-max);
+  margin-inline: auto;
+  padding-inline: var(--ga-space-6);
+}
+
+/* The wordmark. Departure Mono at a LITERAL 20px - the bitmap grid divides
+   cleanly there and 18px lands stems mid-pixel - with POSITIVE tracking,
+   because negative tracking on a bitmap monospace pulls glyphs off their
+   column. Do not swap either value for a token. */
+.ga-brand {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  min-height: var(--ga-target-min);
+  color: var(--ga-fg1);
+  font-family: var(--ga-font-display);
+  font-size: 20px;
+  font-weight: var(--ga-weight-regular);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ga-brand {
+    transition: color var(--ga-dur-fast) var(--ga-ease-out);
+  }
+}
+
+.ga-brand:hover {
+  color: var(--ga-accent);
+}
+
+.ga-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ga-space-2);
+  margin-left: auto;
+}
+
+/* One icon swaps for the other; whichever is hidden is display:none so the
+   button never reports two accessible labels. */
+html:not(.dark) .jj-theme-moon,
+html.dark .jj-theme-sun {
+  display: none;
+}
+
+/* ── hero ──────────────────────────────────────────────────────────────── */
+
+.jj-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(var(--ga-space-12), 8vw, 96px) var(--ga-space-10);
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      color-mix(in srgb, var(--ga-surface) 84%, transparent) 0 21%,
+      transparent 58%
+    ),
+    var(--ga-bg);
+}
+
+/* The glow is a blurred SURFACE ellipse, not a coloured blob - it reads as
+   the page lifting rather than as a gradient someone dropped on top. */
+.jj-hero-glow {
+  position: absolute;
+  inset: 8% 21% 10%;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--ga-surface);
+  filter: blur(72px);
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .jj-hero-glow {
+    animation: jj-breathe 9s var(--ga-ease-in-out) infinite alternate;
+  }
+
+  @keyframes jj-breathe {
+    from { opacity: 0.72; scale: 0.97; }
+    to   { opacity: 0.90; scale: 1.02; }
+  }
+}
+
+/* The hero never ends on a hard edge. */
+.jj-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  height: clamp(72px, 11svh, 140px);
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--ga-bg) 88%, transparent) 54%,
+    var(--ga-bg)
+  );
+}
+
+.jj-hero-inner {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ga-space-10);
+}
+
+.jj-hero-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+/* The announcement capsule, with an inner mono tag. */
+.jj-hero-new {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ga-space-2);
+  max-width: 100%;
+  margin: 0 0 var(--ga-space-5);
+  padding: 5px 12px 5px 8px;
+  border-radius: var(--ga-r-full);
+  background: var(--ga-accent-soft);
+  color: var(--ga-on-accent-soft);
+  font-size: var(--ga-text-sm);
+  font-weight: var(--ga-weight-medium);
+  line-height: var(--ga-lh-snug);
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .jj-hero-new {
+    transition: background var(--ga-dur-fast) var(--ga-ease-out);
+  }
+}
+
+.jj-hero-new:hover {
+  background: color-mix(in srgb, var(--ga-accent-soft) 84%, var(--ga-accent));
+}
+
+.jj-hero-new-tag {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: var(--ga-r-full);
+  background: var(--ga-surface);
+  font-family: var(--ga-font-mono);
+  font-size: var(--ga-text-xs);
+  letter-spacing: 0.08em;
+}
+
+.jj-hero-new-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (pointer: coarse) {
+  .jj-hero-new {
+    min-height: var(--ga-target-min);
+    padding-block: 8px;
+  }
+}
+
+.jj-hero-title {
+  font-size: clamp(38px, 5.4vw, 76px);
+  font-weight: var(--ga-weight-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--ga-fg1);
+}
+
+/* The uppercase mono micro-label. Klay's most-repeated recipe. */
+.jj-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ga-space-2);
+  margin-top: var(--ga-space-3);
+  font-family: var(--ga-font-mono);
+  font-size: var(--ga-text-xs);
+  font-weight: var(--ga-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ga-fg3);
+}
+
+.jj-eyebrow svg {
+  flex: none;
+}
+
+.jj-hero-bio {
+  max-width: 34ch;
+  margin-top: var(--ga-space-5);
+  font-size: var(--ga-text-2xl);
+  line-height: var(--ga-lh-snug);
+  letter-spacing: -0.01em;
+  color: var(--ga-fg2);
+}
+
+/* The highlighter flag: a solid strip, 4px radius. Not a pill - a pill reads
+   as metadata, and this is the loudest fact on the page. */
+.jj-hero-flag {
+  display: inline-block;
+  margin: var(--ga-space-3) 0 0;
+  padding: 3px 12px 4px;
+  border-radius: var(--ga-r-xs);
+  background: var(--ga-success);
+  color: #fff;
+  font-size: var(--ga-text-xl);
+  font-weight: var(--ga-weight-medium);
+  line-height: var(--ga-lh-snug);
+}
+
+.jj-hero-points {
+  list-style: none;
+  margin: var(--ga-space-6) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--ga-space-2);
+}
+
+.jj-hero-points li {
+  position: relative;
+  padding-left: var(--ga-space-5);
+  font-size: var(--ga-text-lg);
+  line-height: var(--ga-lh-normal);
+  color: var(--ga-fg2);
+}
+
+.jj-hero-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 2px;
+  background: var(--ga-border-strong);
+}
+
+.jj-portrait {
+  flex: none;
+  width: 148px;
+  height: 148px;
+  border-radius: var(--ga-r-full);
+  object-fit: cover;
+  background: var(--ga-surface);
+  box-shadow: var(--ga-shadow-lg);
+}
+
+.jj-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ga-space-2);
+  margin-top: var(--ga-space-8);
+}
+
+/* Brand marks keep their own colour; the keycap only owns the label. */
+.jj-actions .ga-key > svg {
+  flex: none;
+}
+
+/* ── hero entrance ─────────────────────────────────────────────────────── */
+/* Additive by design: switch motion off and a complete static page remains. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .jj-hero[data-enter] .jj-hero-new,
+  .jj-hero[data-enter] .jj-hero-title,
+  .jj-hero[data-enter] .jj-eyebrow,
+  .jj-hero[data-enter] .jj-hero-bio,
+  .jj-hero[data-enter] .jj-hero-flag,
+  .jj-hero[data-enter] .jj-hero-points,
+  .jj-hero[data-enter] .jj-actions,
+  .jj-hero[data-enter] .jj-portrait {
+    animation: jj-rise 0.72s var(--ga-ease-out) both;
+  }
+
+  .jj-hero[data-enter] .jj-hero-title  { animation-delay: 0.07s; }
+  .jj-hero[data-enter] .jj-eyebrow     { animation-delay: 0.12s; }
+  .jj-hero[data-enter] .jj-hero-bio    { animation-delay: 0.16s; }
+  .jj-hero[data-enter] .jj-hero-flag   { animation-delay: 0.23s; }
+  .jj-hero[data-enter] .jj-hero-points { animation-delay: 0.27s; }
+  .jj-hero[data-enter] .jj-actions     { animation-delay: 0.30s; }
+  .jj-hero[data-enter] .jj-portrait    { animation-delay: 0.16s; }
+
+  @keyframes jj-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
+/* ── sections ──────────────────────────────────────────────────────────── */
+
+.jj-section {
+  padding-block: var(--ga-space-16);
+}
+
+.jj-section-label {
+  display: block;
+  margin-bottom: var(--ga-space-5);
+  font-family: var(--ga-font-mono);
+  font-size: var(--ga-text-xs);
+  font-weight: var(--ga-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ga-fg3);
+}
+
+.jj-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--ga-space-3);
+}
+
+/* A row is a Klay card: no border, the edge is the trailing `0 0 0 1px` ring
+   inside the shadow token. */
+.jj-row.ga-card {
+  --card-pad-block: var(--ga-space-3);
+  --card-pad-inline: var(--ga-space-4);
+  height: auto;
+}
+
+.jj-row-header {
+  display: flex;
+  align-items: center;
+  gap: var(--ga-space-4);
+  width: 100%;
+  min-height: var(--ga-target-min);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+/* The row is not itself a link or a button - the name is the outbound link
+   and the chevron is the disclosure control, so each affordance says exactly
+   what it does. The card still answers the pointer, just gently. */
+@media (prefers-reduced-motion: no-preference) {
+  .jj-row.ga-card {
+    transition: box-shadow var(--ga-dur-base) var(--ga-ease-out);
+  }
+}
+
+.jj-row.ga-card:hover {
+  box-shadow: var(--ga-shadow-lg);
+}
+
+.jj-row.ga-card.ga-card-flat:hover {
+  box-shadow: var(--ga-shadow-md);
+}
+
+.jj-row-tile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--ga-surface);
+  box-shadow: var(--ga-shadow-sm);
+  overflow: hidden;
+}
+
+.jj-row-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The Klay pixel wordmark. `currentColor` + crispEdges is the whole trick:
+   one copy that inks #272727 on light and #f2f4f7 on dark, with the pixel
+   grid staying hard instead of antialiasing into mush. */
+.jj-row-tile .jj-klay-mark {
+  width: 74%;
+  height: auto;
+  color: var(--ga-fg1);
+}
+
+.jj-row-main {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.jj-row-name {
+  display: block;
+  font-size: var(--ga-text-lg);
+  font-weight: var(--ga-weight-medium);
+  letter-spacing: -0.01em;
+  color: var(--ga-fg1);
+  text-decoration: none;
+}
+
+a.jj-row-name:hover {
+  color: var(--ga-accent);
+}
+
+.jj-row-note {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--ga-text-md);
+  color: var(--ga-fg3);
+}
+
+.jj-row-right {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--ga-space-3);
+}
+
+.jj-row-chevron {
+  flex: none;
+  color: var(--ga-fg3);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .jj-row-chevron {
+    transition: transform var(--ga-dur-base) var(--ga-ease-out);
+  }
+}
+
+.jj-row-toggle[aria-expanded="true"] .jj-row-chevron {
+  transform: rotate(180deg);
+}
+
+/* grid-template-rows 0fr → 1fr instead of a max-height guess, so copy of any
+   length opens fully and closes cleanly. */
+.jj-row-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .jj-row-panel {
+    transition: grid-template-rows var(--ga-dur-slow) var(--ga-ease-out);
+  }
+}
+
+.jj-row-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.jj-row-panel > div {
+  overflow: hidden;
+}
+
+.jj-row-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: var(--ga-space-4) 0 var(--ga-space-1) calc(56px + var(--ga-space-4));
+  display: grid;
+  gap: var(--ga-space-2);
+}
+
+.jj-row-panel li {
+  position: relative;
+  padding-left: var(--ga-space-4);
+  font-size: var(--ga-text-md);
+  line-height: var(--ga-lh-normal);
+  color: var(--ga-fg2);
+}
+
+.jj-row-panel li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.58em;
+  width: 5px;
+  height: 5px;
+  border-radius: var(--ga-r-full);
+  background: var(--ga-border-strong);
+}
+
+/* ── footer ────────────────────────────────────────────────────────────── */
+
+.jj-footer {
+  margin-top: var(--ga-space-8);
+  padding-block: var(--ga-space-10);
+  border-top: 1px solid var(--ga-divider);
+}
+
+.jj-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ga-space-4);
+  flex-wrap: wrap;
+}
+
+.jj-footer-mark {
+  display: block;
+  font-family: var(--ga-font-display);
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--ga-fg1);
+}
+
+.jj-footer-note {
+  font-family: var(--ga-font-mono);
+  font-size: var(--ga-text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ga-fg3);
+}
+
+/* ── color-mix fallback ────────────────────────────────────────────────── */
+/* The keycap tone ramps are color-mix() derived, and a browser without it
+   renders them as *nothing* rather than as something ugly. Pin the primary
+   key to literal hexes there so the main CTA can never go invisible. */
+
+@supports not (color: color-mix(in srgb, red, red)) {
+  .ga-key-ink {
+    --key-edge: #272727;
+    --key-face-from: #272727;
+    --key-face-to: #232323;
+    --key-hover-from: #3a3a3a;
+    --key-hover-to: #2e2e2e;
+    --key-lip: #0c0c0c;
+  }
+
+  html.dark .ga-key-ink {
+    --key-edge: #f2f4f7;
+    --key-face-from: #f2f4f7;
+    --key-face-to: #dadce0;
+    --key-hover-from: #ffffff;
+    --key-hover-to: #e8eaee;
+    --key-lip: #9aa0a8;
+  }
+}
+
+/* ── coarse pointers ───────────────────────────────────────────────────── */
+/* --ga-target-min (44px) is Klay's WCAG 2.2 pointer floor, and three things
+   here sit under it by default: the xs chevron (32px), the sm keycaps (36px)
+   and the row's name link (a 24px line box). Klay's own mobile.css does this
+   lifting; that file is app-chrome specific and not vendored, so the rules
+   live here instead. Gated on the pointer, not the viewport - a 380px window
+   on a desktop keeps the tighter, better-looking geometry. */
+
+@media (pointer: coarse) {
+  .jj-actions .ga-key {
+    --key-h: var(--ga-target-min);
+  }
+
+  .jj-row-toggle.ga-key {
+    --key-h: var(--ga-target-min);
+  }
+
+  /* Padding rather than height: the link must stay inline so the name still
+     sits on the text baseline next to the note beneath it. */
+  a.jj-row-name {
+    display: inline-block;
+    padding-block: 10px;
+    margin-block: -10px;
+  }
+}
+
+/* ── responsive ────────────────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .jj-hero-inner {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: var(--ga-space-6);
+  }
+
+  .jj-portrait {
+    width: 108px;
+    height: 108px;
+  }
+
+  .jj-hero-bio {
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  /* On :root, not .ga-topbar - base.css computes html{scroll-padding-top} from
+     this token, and an override scoped to the bar would leave anchor targets
+     landing under a 72px offset that no longer exists. */
+  :root {
+    --ga-topbar-h: 52px;
+  }
+
+  .ga-topbar-inner {
+    padding-inline: var(--ga-space-4);
+    gap: var(--ga-space-2);
+  }
+
+  .jj-hero {
+    padding-block: var(--ga-space-10) var(--ga-space-12);
+  }
+
+  .jj-section {
+    padding-block: var(--ga-space-12);
+  }
+
+  .jj-row-tile {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+  }
+
+  .jj-row-panel ul {
+    padding-left: calc(44px + var(--ga-space-4));
+  }
+
+  .jj-row-right {
+    gap: var(--ga-space-2);
+  }
+
+  .jj-hero-flag {
+    font-size: var(--ga-text-lg);
+  }
+
+  .jj-actions .ga-key {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .ga-topbar-inner {
+    padding-inline: var(--ga-space-3);
+  }
+}

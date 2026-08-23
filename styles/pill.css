@@ -1,0 +1,171 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Pill - fanout's `.ga-pill` (24px, hairline border, 12px label) plus their
+   `.ga-pill-dark` mono-uppercase variant, which is the one doing the real
+   work on this site: "12 MODULES", "94 LESSONS", "FREE ON YOUTUBE".
+
+   Status colours are built with color-mix off the status tokens rather than
+   as six hand-picked pairs, so a token change propagates and dark mode needs
+   no second table.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ga-pill {
+  /* GAP: no control-height token below 28px. */
+  --pill-h: 24px;
+  --pill-tone: var(--ga-fg2);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ga-space-2);
+  height: var(--pill-h);
+  padding-inline: var(--ga-space-3);
+  border: 1px solid var(--ga-border);
+  border-radius: var(--ga-r-full);
+  background: var(--ga-surface);
+  color: var(--ga-fg1);
+  font-family: var(--ga-font-sans);
+  font-size: var(--ga-text-xs);
+  font-weight: var(--ga-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.ga-pill > svg {
+  flex: none;
+}
+
+.ga-pill-sm {
+  --pill-h: 20px;
+  padding-inline: var(--ga-space-2);
+  gap: var(--ga-space-1);
+}
+
+/* ── status dot ────────────────────────────────────────────────────────── */
+
+.ga-pill-dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--ga-r-full);
+  background: var(--pill-tone);
+}
+
+/* A live product deserves to look live. The halo pulses; the dot itself never
+   moves, so with motion off the status still reads. */
+@media (prefers-reduced-motion: no-preference) {
+  .ga-pill-live .ga-pill-dot {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--pill-tone) 60%, transparent);
+    animation: ga-pill-pulse 2s var(--ga-ease-out) infinite;
+  }
+}
+
+@keyframes ga-pill-pulse {
+  70% {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--pill-tone) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--pill-tone) 0%, transparent);
+  }
+}
+
+/* ── tones ─────────────────────────────────────────────────────────────── */
+
+.ga-pill-accent {
+  --pill-tone: var(--ga-accent);
+}
+.ga-pill-success {
+  --pill-tone: var(--ga-success);
+}
+.ga-pill-warning {
+  --pill-tone: var(--ga-warning);
+}
+.ga-pill-danger {
+  --pill-tone: var(--ga-danger);
+}
+.ga-pill-info {
+  --pill-tone: var(--ga-info);
+}
+
+.ga-pill-accent,
+.ga-pill-success,
+.ga-pill-warning,
+.ga-pill-danger,
+.ga-pill-info {
+  background: color-mix(in srgb, var(--pill-tone) 10%, var(--ga-surface));
+  border-color: color-mix(in srgb, var(--pill-tone) 30%, transparent);
+  color: color-mix(in srgb, var(--pill-tone) 78%, var(--ga-fg1));
+}
+
+/* Dark surfaces need the text lifted rather than deepened - mixing toward
+   fg1 there means mixing toward white, which is the correct direction. */
+html.dark .ga-pill-accent,
+html.dark .ga-pill-success,
+html.dark .ga-pill-warning,
+html.dark .ga-pill-danger,
+html.dark .ga-pill-info {
+  background: color-mix(in srgb, var(--pill-tone) 16%, var(--ga-surface));
+  border-color: color-mix(in srgb, var(--pill-tone) 34%, transparent);
+  color: color-mix(in srgb, var(--pill-tone) 82%, var(--ga-fg1));
+}
+
+/* ── solid ─────────────────────────────────────────────────────────────── */
+
+.ga-pill-solid {
+  background: var(--pill-tone);
+  border-color: var(--pill-tone);
+  color: var(--ga-ink-50);
+}
+
+.ga-pill-solid .ga-pill-dot {
+  background: var(--ga-ink-50);
+}
+
+/* ── mono ──────────────────────────────────────────────────────────────── */
+/* fanout's `.ga-pill-dark`: 22px, mono, uppercase, wide tracking. The label
+   for a fact rather than a state. */
+
+.ga-pill-mono {
+  --pill-h: 22px;
+  font-family: var(--ga-font-mono);
+  font-size: var(--ga-text-xs);
+  font-weight: var(--ga-weight-regular);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--ga-chip);
+  border-color: transparent;
+  color: var(--ga-fg2);
+}
+
+.ga-pill-mono.ga-pill-inverse {
+  background: var(--ga-ink-800);
+  border-color: var(--ga-ink-800);
+  color: var(--ga-ink-50);
+}
+
+html.dark .ga-pill-mono.ga-pill-inverse {
+  background: var(--ga-fg1);
+  color: var(--ga-bg);
+  border-color: var(--ga-fg1);
+}
+
+/* ── link ──────────────────────────────────────────────────────────────── */
+
+a.ga-pill {
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a.ga-pill,
+  button.ga-pill {
+    transition:
+      border-color var(--ga-dur-fast) var(--ga-ease-out),
+      background var(--ga-dur-fast) var(--ga-ease-out),
+      color var(--ga-dur-fast) var(--ga-ease-out);
+  }
+}
+
+a.ga-pill:hover,
+button.ga-pill:hover {
+  border-color: var(--ga-border-strong);
+  color: var(--ga-fg1);
+}

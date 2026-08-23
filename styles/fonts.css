@@ -1,0 +1,53 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   fonts.css - the faces, self-hosted.
+
+   These files have been sitting in /fonts since the first fanout replica, but
+   @font-face was only ever declared in ai-course.css. Every other page asked
+   for 'Overused Grotesk' and silently got Inter from Google's CDN, which is
+   most of why the replica never looked like the original.
+
+   Both families are OFL - see fonts/OverusedGrotesk-OFL.txt and
+   fonts/DepartureMono-OFL.txt. Self-hosting also drops two render-blocking
+   third-party origins (fonts.googleapis.com, fonts.gstatic.com).
+
+   IBM Plex Mono is the one face we do NOT ship a file for; it falls back
+   through the system mono stack until we vendor it.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: "Overused Grotesk";
+  src: url("/fonts/OverusedGrotesk-Book.woff2") format("woff2");
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Overused Grotesk";
+  src: url("/fonts/OverusedGrotesk-Roman.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Overused Grotesk";
+  src: url("/fonts/OverusedGrotesk-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Overused Grotesk";
+  src: url("/fonts/OverusedGrotesk-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* The pixel display face. Used sparingly - eyebrows, stamps, counters. */
+@font-face {
+  font-family: "Departure Mono";
+  src: url("/fonts/DepartureMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

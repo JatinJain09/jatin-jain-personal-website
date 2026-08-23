@@ -1,0 +1,215 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   base.css - reset, element defaults, and the accessibility floor.
+
+   Everything here is deliberate rather than inherited from a reset library:
+   the a11y rules below (focus-visible, reduced-motion, target sizes) are one
+   of the four places this site is meant to beat the thing it is modelled on,
+   so they belong in the foundation and not in a later polish pass.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Anchor links and skip links must not land under the sticky topbar. */
+  scroll-padding-top: calc(var(--ga-topbar-h) + var(--ga-space-4));
+}
+
+body {
+  background: var(--ga-bg);
+  color: var(--ga-fg1);
+  font-family: var(--ga-font-sans);
+  font-size: var(--ga-text-lg);
+  font-weight: var(--ga-weight-regular);
+  line-height: var(--ga-lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* The single most common clone bug: a wide artifact pushing the whole page
+     sideways on mobile. Wide things scroll inside their own container. */
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--ga-weight-semibold);
+  line-height: var(--ga-lh-snug);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img, svg, video, canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--ga-font-mono);
+  font-size: 0.9em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--ga-divider);
+}
+
+/* ── focus ─────────────────────────────────────────────────────────────────
+   A visible ring on keyboard focus only, on every interactive element, in
+   both themes. Never `outline: none` without a replacement. */
+
+:focus-visible {
+  outline: 2px solid var(--ga-accent);
+  outline-offset: 2px;
+  border-radius: var(--ga-r-xs);
+}
+
+/* ── skip link ─────────────────────────────────────────────────────────── */
+
+.ga-skip {
+  position: absolute;
+  left: var(--ga-space-4);
+  top: var(--ga-space-4);
+  z-index: 200;
+  padding: var(--ga-space-2) var(--ga-space-4);
+  background: var(--ga-surface);
+  color: var(--ga-fg1);
+  border: 1px solid var(--ga-border);
+  border-radius: var(--ga-r-md);
+  box-shadow: var(--ga-shadow-md);
+  font-size: var(--ga-text-md);
+  font-weight: var(--ga-weight-medium);
+  transform: translateY(calc(-100% - var(--ga-space-8)));
+  transition: transform var(--ga-dur-base) var(--ga-ease-out);
+}
+.ga-skip:focus-visible {
+  transform: translateY(0);
+}
+
+/* Visually hidden but read aloud. */
+.ga-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── reduced motion ────────────────────────────────────────────────────────
+   Every piece of choreography on this site is additive, so switching it all
+   off leaves a complete, static, usable page. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ── layout helpers ────────────────────────────────────────────────────── */
+
+.ga-container {
+  width: 100%;
+  max-width: var(--ga-content-max);
+  margin-inline: auto;
+  /* --ga-gutter, not --ga-space-6 directly: styles/mobile.css steps the gutter
+     down on phones, and anything that breaks out full-bleed cancels it with
+     calc(var(--ga-gutter) * -1). Two hard-coded numbers would drift. */
+  padding-inline: var(--ga-gutter);
+}
+
+.ga-reading {
+  width: 100%;
+  max-width: var(--ga-reading-max);
+  margin-inline: auto;
+  padding-inline: var(--ga-gutter);
+}
+
+/* Wide content scrolls inside itself rather than widening the page. */
+.ga-scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  /* `overflow-x: auto` alone did not keep that promise. A wide table inside one
+     still propagated its layout overflow into the DOCUMENT's scrollable region:
+     /labs/attention measured documentElement.scrollWidth of 772 on a 375px
+     viewport while the 797px heatmap was visibly clipped by its own 309px
+     scroller. `contain: paint` is what actually stops it - 772 -> 375 with this
+     one declaration and nothing else changed. It costs nothing semantically: a
+     box with overflow-x: auto already computes overflow-y to auto, so both axes
+     were scroll containers before this line existed. */
+  contain: paint;
+}
+
+/* ── the shell: <main>, optionally with the course rail beside it ─────────
+   Block by default, so every page WITHOUT a rail - home, blog, pricing,
+   legal, 404 - lays out exactly as it did before this existed. The flex row
+   only appears under [data-sidebar], which Layout.jsx sets from the pathname.
+
+   `min-width: 0` on main is not optional: a flex item's default `auto`
+   minimum is its content width, so one wide code block or table inside a
+   lesson would push the whole row wider than the viewport instead of
+   scrolling inside its own .ga-scroll-x. */
+.ga-shell { display: block; }
+
+.ga-shell[data-sidebar] {
+  display: flex;
+  align-items: flex-start;
+}
+
+.ga-shell[data-sidebar] > main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* An app-shell route (see routes/Aptitude.jsx) sets `data-app-shell` on <html>
+   and drops the promo strip and the footer. Those two rules are NOT here: this
+   file is imported as `layer(base)` while SaleBar.css and Footer.css are
+   unlayered, and unlayered CSS beats every layer - a `display: none` written
+   here would lose to `.ga-sale { display: flex }` and the strip would simply
+   stay up. Each rule lives in the stylesheet that owns the element instead. */

@@ -1,0 +1,144 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Card - the base surface.
+
+   fanout's `.ga-card` is four declarations: surface, 12px radius, 16/18
+   padding, and `--ga-shadow-md`. What makes it look crisp instead of soft is
+   hidden in that shadow token: every level ends in `0 0 0 1px` - a hairline
+   RING, not a border. A ring costs no layout box, so the card can sit flush
+   in a grid and still have a defined edge, and it survives a background
+   change that a hardcoded border colour would not.
+
+   So: no `border` here, ever. If a card needs a stronger edge, it raises its
+   shadow level.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ga-card {
+  --card-pad-block: var(--ga-space-4);
+  --card-pad-inline: var(--ga-space-5);
+
+  position: relative;
+  display: block;
+  background: var(--ga-surface);
+  border-radius: var(--ga-r-lg);
+  box-shadow: var(--ga-shadow-md);
+  padding: var(--card-pad-block) var(--card-pad-inline);
+  color: inherit;
+  /* Content decides the height; a card in a grid row stretches to match. */
+  height: 100%;
+}
+
+.ga-card-flat {
+  box-shadow: var(--ga-shadow-sm);
+}
+
+.ga-card-raised {
+  box-shadow: var(--ga-shadow-lg);
+}
+
+.ga-card-sm {
+  --card-pad-block: var(--ga-space-3);
+  --card-pad-inline: var(--ga-space-4);
+}
+
+.ga-card-lg {
+  --card-pad-block: var(--ga-space-6);
+  --card-pad-inline: var(--ga-space-6);
+}
+
+/* Media-first cards manage their own insets. */
+.ga-card-bare {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ── interactive ───────────────────────────────────────────────────────── */
+/* Only ever applied to a real <a> or <button>. A div with an onClick is not
+   a card the keyboard can reach. */
+
+.ga-card-interactive {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ga-card-interactive {
+    transition:
+      box-shadow var(--ga-dur-base) var(--ga-ease-out),
+      translate var(--ga-dur-base) var(--ga-ease-out);
+  }
+
+  .ga-card-interactive:hover {
+    translate: 0 -2px;
+  }
+}
+
+.ga-card-interactive:hover {
+  box-shadow: var(--ga-shadow-lg);
+}
+
+.ga-card-interactive:active {
+  translate: 0 0;
+  box-shadow: var(--ga-shadow-sm);
+}
+
+/* The whole card is the hit target, but only the title carries the link text.
+   `::after` stretches the anchor over the card so the accessible name stays
+   short while the click area stays large. */
+.ga-card-linked {
+  position: relative;
+}
+
+.ga-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* ── accent rail ───────────────────────────────────────────────────────── */
+/* fanout's nav-surface cards carry a 3px bar in the card's own colour. Set
+   --card-accent (a --ga-cat-* token) to switch it on. */
+
+.ga-card-accented::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  border-radius: var(--ga-r-lg) var(--ga-r-lg) 0 0;
+  background: var(--card-accent, var(--ga-accent));
+}
+
+/* ── slots ─────────────────────────────────────────────────────────────── */
+
+.ga-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ga-space-3);
+}
+
+.ga-card-title {
+  font-size: var(--ga-text-xl);
+  font-weight: var(--ga-weight-semibold);
+  line-height: var(--ga-lh-snug);
+  color: var(--ga-fg1);
+  letter-spacing: -0.01em;
+}
+
+.ga-card-body {
+  margin-top: var(--ga-space-2);
+  font-size: var(--ga-text-md);
+  line-height: var(--ga-lh-normal);
+  color: var(--ga-fg2);
+}
+
+.ga-card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--ga-space-2);
+  margin-top: var(--ga-space-4);
+  padding-top: var(--ga-space-3);
+  border-top: 1px solid var(--ga-divider);
+  font-size: var(--ga-text-sm);
+  color: var(--ga-fg3);
+}

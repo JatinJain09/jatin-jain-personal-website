@@ -1,0 +1,385 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   keys.css - ONE physical button, MANY tones.
+
+   The recipe is lifted verbatim from pricing/CheckoutPanel.css, which held the
+   original and had four hand-kept copies of it elsewhere (five, counting the
+   half-finished one in Tutor.css). The "pop" is not a drop shadow. It is four
+   layers:
+
+     1. a 0.5px hairline EDGE, darker than the face
+     2. a shallow vertical GRADIENT face - two stops, four percentage points
+        apart, which is the whole difference between "a button" and "a keycap"
+     3. a 1px inset white GLOSS along the top, the light catching the bevel
+     4. a 3px inset dark LIP along the bottom, which is the cap's own thickness
+
+   plus --ga-shadow-md underneath as ambient occlusion. On :active the lip
+   collapses 3px -> 1px and the cap translates down 1px, so the TOP edge stays
+   put and the bottom rises to meet it. That is a real press, not an animation,
+   and it is why this button must NOT lift on hover: spending the travel on
+   hover leaves nothing for the click.
+
+   ── THE CONTRACT ───────────────────────────────────────────────────────────
+   A TONE supplies seven paint properties and nothing else - no geometry, no
+   font, no selector:
+       --key-edge  --key-face-from  --key-face-to
+       --key-hover-from  --key-hover-to  --key-lip  --key-label
+   plus three optional escapes with defaults: --key-shadow, --key-hover-shadow,
+   --key-gloss.
+   A SIZE supplies geometry and nothing else. The two never overlap, so any
+   tone composes with any size.
+
+   The ramps themselves live in tokens.css, next to the green they are
+   calibrated against, and every stop is measured by scripts/contrast-check.py
+   rather than eyeballed. Run it after touching any of them.
+
+   ── WHERE THIS SITS IN THE CASCADE ─────────────────────────────────────────
+   Imported from styles/index.css, UNLAYERED, before mobile.css. In the built
+   entry chunk that puts it after all 61 non-lazy component stylesheets, so it
+   would win a tie with any of them - but NOTHING HERE RELIES ON THAT, and it
+   must stay that way. Every rule this file supersedes has been DELETED from the
+   component stylesheet that used to own it. One owner per declaration.
+
+   Two reasons that is not optional, both already true in this repo:
+
+     · /aptitude is the one lazy route (routes.jsx) and cssCodeSplit is on, so
+       Tutor.css ships as its own <link> AFTER app-*.css. Every .apt-* rule
+       beats this file no matter what index.css does.
+     · the tie only goes our way because main.jsx happens to import
+       ./styles/index.css last, after ./routes.jsx. Reordering that line is a
+       silent, sitewide, invisible-in-review inversion with no build error.
+
+   ── WHAT IS DELIBERATELY NOT A KEY ─────────────────────────────────────────
+   A 3px lip is a claim about physical thickness, and it is false for things
+   that are not caps: full-bleed rows in a list (.ga-drawer-link,
+   .ga-account-item, .kc-rail-lesson), navigation set in prose
+   (.klay-hero-secondary, .pw-alt, .kc-back), disclosure summaries, and a label
+   painted over a video thumbnail (.kc-facade-cta). A lip on a row is a border,
+   not a bevel. Those keep their own treatment on purpose.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── the recipe ─────────────────────────────────────────────────────────── */
+
+.ga-key {
+  /* Tone contract. The defaults ARE the neutral tone, so a bare .ga-key is
+     never an unstyled UA button - which is what a component that forgot its
+     stylesheet used to render as at the highest-intent tap on the site. */
+  --key-edge: var(--ga-key-neutral-edge);
+  --key-face-from: var(--ga-surface);
+  --key-face-to: var(--ga-surface);
+  --key-hover-from: var(--key-face-from);
+  --key-hover-to: var(--key-face-to);
+  --key-lip: transparent;
+  --key-label: var(--ga-fg1);
+  --key-shadow: var(--ga-shadow-md);
+  --key-hover-shadow: var(--key-shadow);
+  /* A COLOUR, not a bare percentage. Lightning CSS downlevels a color-mix()
+     that sits alone in a custom property into an @supports pair - grep the
+     built stylesheet for `@supports (color:color-mix(in lab`, it already does
+     this for --ga-key-edge - but passes one buried inside a box-shadow
+     shorthand through verbatim. Naming the whole colour here keeps the
+     fallback that the shorthand would have thrown away. */
+  --key-gloss: color-mix(in srgb, #fff 34%, transparent);
+
+  /* Geometry. Overridden by a SIZE class, never by a tone. */
+  --key-h: var(--ga-target-min);
+  --key-px: var(--ga-space-6);
+  --key-gap: var(--ga-space-2);
+  --key-r: var(--ga-r-md);
+  --key-lip-h: 3px;
+  /* GAP: tokens.css has no hairline-border step. 0.5px keeps the edge from
+     reading as a frame at the sizes these are used. */
+  --key-bw: 0.5px;
+
+  /* The face. One value sitewide: every button label is the reference face,
+     Overused Grotesk 600, including the two that used to be mono. */
+  --key-font: var(--ga-font-sans);
+  --key-fs: var(--ga-text-md);
+  --key-fw: var(--ga-weight-semibold);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--key-gap);
+  min-height: var(--key-h);
+  padding-block: 0;
+  padding-inline: var(--key-px);
+  border: var(--key-bw) solid var(--key-edge);
+  border-radius: var(--key-r);
+  background: linear-gradient(var(--key-face-from), var(--key-face-to));
+  color: var(--key-label);
+  box-shadow:
+    var(--key-shadow),
+    inset 0 1px 1px var(--key-gloss),
+    inset 0 calc(-1 * var(--key-lip-h)) var(--key-lip);
+  font-family: var(--key-font);
+  font-size: var(--key-fs);
+  font-weight: var(--key-fw);
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  /* A button must never be the thing that makes the page scroll sideways.
+     overflow clips a label that will not fit; it does NOT clip the box-shadow
+     (painted outside the padding box) or the focus outline. */
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* base.css's global :focus-visible sets `border-radius: var(--ga-r-xs)` in
+   order to round the outline - but border-radius applies to the ELEMENT, so
+   every focused control on the site quietly snaps from its own radius to 4px
+   and back. Restore the cap's own corner; the outline follows it anyway. */
+.ga-key:focus-visible {
+  border-radius: var(--key-r);
+}
+
+.ga-key > svg {
+  flex: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ga-key {
+    transition:
+      background var(--ga-dur-fast) var(--ga-ease-out),
+      box-shadow var(--ga-dur-fast) var(--ga-ease-out),
+      border-color var(--ga-dur-fast) var(--ga-ease-out),
+      color var(--ga-dur-fast) var(--ga-ease-out),
+      transform var(--ga-dur-fast) var(--ga-ease-out);
+  }
+}
+
+/* ── hover ─────────────────────────────────────────────────────────────────
+   The shadow stack is repeated rather than inherited because the ink tone
+   swaps its ambient layer on hover (colour cannot carry that tone's hover -
+   see tokens.css) and the other four do not. NO transform: the lip carries the
+   press, and a cap that floats on hover has nothing left to do on click. */
+
+.ga-key:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: linear-gradient(var(--key-hover-from), var(--key-hover-to));
+  box-shadow:
+    var(--key-hover-shadow),
+    inset 0 1px 1px var(--key-gloss),
+    inset 0 calc(-1 * var(--key-lip-h)) var(--key-lip);
+}
+
+/* ── press ──────────────────────────────────────────────────────────────── */
+
+.ga-key:active:not(:disabled):not([aria-disabled="true"]) {
+  --key-lip-h: 1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ga-key:active:not(:disabled):not([aria-disabled="true"]) {
+    transform: translateY(1px);
+  }
+}
+
+/* ── disabled ──────────────────────────────────────────────────────────────
+   aria-disabled on an <a> is advisory only - the anchor stays clickable, so
+   the pointer has to be taken away explicitly. Keyboard focus is kept on
+   purpose: a disabled control the user cannot reach cannot explain itself. */
+
+.ga-key:disabled,
+.ga-key[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.ga-key[aria-disabled="true"] {
+  pointer-events: none;
+}
+
+/* ── sizes ─────────────────────────────────────────────────────────────────
+   Eleven heights were in use across the site (26 28 32 34 36 38 40 42 44 48
+   52). These are the four that replace them. The DEFAULT is --ga-target-min,
+   so the accessible choice is also the one you get by not thinking about it. */
+
+/* Icon squares and chips only. Never a labelled action - 32px with a 2px lip
+   is the floor at which the bevel still reads as thickness rather than as a
+   bottom border. */
+.ga-key-xs {
+  --key-h: 32px;
+  --key-px: var(--ga-space-3);
+  --key-gap: var(--ga-space-1);
+  --key-fs: var(--ga-text-sm);
+  --key-fw: var(--ga-weight-medium);
+  --key-r: var(--ga-r-sm);
+  --key-lip-h: 2px;
+}
+
+.ga-key-sm {
+  --key-h: 36px;
+  --key-px: var(--ga-space-4);
+  --key-gap: var(--ga-space-1);
+  --key-fs: var(--ga-text-sm);
+  --key-r: var(--ga-r-sm);
+  --key-lip-h: 2px;
+}
+
+/* 48, not 52: it is exactly .klay-hero-primary's current height, which is the
+   single biggest reduction in OG-capture churn available - that button is in
+   the link-share card. */
+.ga-key-lg {
+  --key-h: 48px;
+  --key-px: calc(var(--ga-space-6) + var(--ga-space-1));
+  /* GAP: the radius scale jumps 8 -> 12 and 12 is too round for a 48px cap. */
+  --key-r: calc(var(--ga-r-md) + 2px);
+}
+
+.ga-key-block {
+  display: flex;
+  width: 100%;
+}
+
+/* Square when there is no label - an icon needs equal optical margin. */
+.ga-key-icon {
+  --key-px: 0;
+  --key-lip-h: 2px;
+  width: var(--key-h);
+}
+
+/* ── tones ─────────────────────────────────────────────────────────────────
+   Seven declarations each, all of them var(). If a tone ever needs an eighth
+   thing, it is not a tone - it is a component. */
+
+/* GREEN - the control that COMMITS: opens a checkout, sends the question,
+   starts the tutor. The reference every other tone is measured against. */
+.ga-key-green {
+  --key-edge: var(--ga-key-edge);
+  --key-face-from: var(--ga-key-face-from);
+  --key-face-to: var(--ga-key-face-to);
+  --key-hover-from: var(--ga-key-face-hover-from);
+  --key-hover-to: var(--ga-key-face-hover-to);
+  --key-lip: var(--ga-key-lip);
+  --key-label: var(--ga-on-accent);
+}
+
+.ga-key-accent {
+  --key-edge: var(--ga-key-accent-edge);
+  --key-face-from: var(--ga-key-accent-face-from);
+  --key-face-to: var(--ga-key-accent-face-to);
+  --key-hover-from: var(--ga-key-accent-face-hover-from);
+  --key-hover-to: var(--ga-key-accent-face-hover-to);
+  --key-lip: var(--ga-key-accent-lip);
+  --key-label: var(--ga-on-accent);
+}
+
+/* INK. Its hover is ELEVATION, not colour - a near-black or near-white face
+   has nowhere to move, so rest and hover differ by 3-5/255. tokens.css carries
+   the measurement. */
+.ga-key-ink {
+  --key-edge: var(--ga-key-ink-edge);
+  --key-face-from: var(--ga-key-ink-face-from);
+  --key-face-to: var(--ga-key-ink-face-to);
+  --key-hover-from: var(--ga-key-ink-face-hover-from);
+  --key-hover-to: var(--ga-key-ink-face-hover-to);
+  --key-lip: var(--ga-key-ink-lip);
+  --key-label: var(--ga-bg);
+  --key-hover-shadow: var(--ga-shadow-lg);
+}
+
+/* A white gloss line along the top of a near-white cap is invisible. Harmless,
+   but one declaration is cheaper than the next person searching for it. */
+html.dark .ga-key-ink {
+  --key-gloss: transparent;
+}
+
+.ga-key-danger {
+  --key-edge: var(--ga-key-danger-edge);
+  --key-face-from: var(--ga-key-danger-face-from);
+  --key-face-to: var(--ga-key-danger-face-to);
+  --key-hover-from: var(--ga-key-danger-face-hover-from);
+  --key-hover-to: var(--ga-key-danger-face-hover-to);
+  --key-lip: var(--ga-key-danger-lip);
+  --key-label: var(--ga-on-accent);
+}
+
+/* NEUTRAL - the outlined secondary, expressed as the same cap in an unpainted
+   material. Lower elevation and no gloss on purpose: a white face gains
+   nothing from a white highlight, and shadow-md under a surface-coloured cap
+   makes a quiet button read as the loudest thing on the page.
+   Its EDGE is the only one doing structural work - see tokens.css. */
+.ga-key-neutral {
+  --key-edge: var(--ga-key-neutral-edge);
+  --key-face-from: var(--ga-surface);
+  --key-face-to: color-mix(in srgb, var(--ga-surface) 96%, #000);
+  --key-hover-from: var(--ga-hover);
+  --key-hover-to: var(--ga-hover);
+  --key-lip: var(--ga-ink-300);
+  --key-label: var(--ga-fg1);
+  --key-shadow: var(--ga-shadow-sm);
+  --key-gloss: transparent;
+  --key-fw: var(--ga-weight-medium);
+}
+
+/* ink-300 is a LIGHT band, which on a dark surface is a highlight where a
+   shadow should be. Pure black rather than --ga-bg: on a dark-surface cap the
+   lip tops out around 1.2 : 1 either way, and black is the deeper of the two.
+   Depth on this tone in dark comes from the edge, not the lip. */
+html.dark .ga-key-neutral {
+  --key-face-to: color-mix(in srgb, var(--ga-surface) 88%, #000);
+  --key-lip: #000;
+}
+
+/* GHOST - the deliberate ABSENCE of a cap, and the one place in this file that
+   turns the recipe off rather than colouring it.
+
+   A ghost button is defined by having no object under it until you reach for
+   it: toolbar affordances, a close X, "Cancel" beside a real action. Giving it
+   an edge, a lip and a shadow would make it exactly the thing it exists not to
+   be, and would also flatten the one contrast that lets a toolbar have a
+   primary at all.
+
+   It keeps the geometry, the focus ring and the press, because those are true
+   of any control. Only the cap goes. */
+.ga-key-ghost {
+  --key-edge: transparent;
+  --key-face-from: transparent;
+  --key-face-to: transparent;
+  --key-hover-from: var(--ga-hover);
+  --key-hover-to: var(--ga-hover);
+  --key-lip: transparent;
+  --key-label: var(--ga-fg1);
+  --key-shadow: none;
+  --key-hover-shadow: none;
+  --key-gloss: transparent;
+  --key-fw: var(--ga-weight-medium);
+}
+
+/* ── the sunken cap ────────────────────────────────────────────────────────
+   NOT a variant of the key - its inverse, and the thing that makes tabs, chips
+   and segmented controls work as keys at all.
+
+   [aria-pressed], [aria-expanded] and an active segment all say "this is
+   currently true", which is a cap that is already DOWN: no lip, no ambient
+   shadow, a shallow inset instead. Render three raised caps with one of them
+   "selected" and it reads as a rendering bug; a raised one beside a sunken one
+   reads correctly with no legend and no colour.
+
+   Deliberately keyed on ARIA rather than on a .is-active class, so a control
+   that looks pressed is one a screen reader also calls pressed. If a component
+   has no ARIA state to hang this on, that is the bug to fix. */
+
+.ga-key[aria-pressed="true"],
+.ga-key[aria-expanded="true"],
+.ga-key[aria-selected="true"],
+.ga-key[data-active] {
+  --key-lip-h: 0px;
+  --key-gloss: transparent;
+  --key-shadow: inset 0 1px 2px color-mix(in srgb, #000 14%, transparent);
+  --key-hover-shadow: var(--key-shadow);
+}
+
+/* A sunken cap has already spent its travel - pressing it must not move it
+   again, or "on" and "being clicked" look identical. */
+.ga-key[aria-pressed="true"]:active,
+.ga-key[aria-expanded="true"]:active,
+.ga-key[aria-selected="true"]:active,
+.ga-key[data-active]:active {
+  transform: none;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "jatin-singhi-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Jatin Singhi - 18-year-old entrepreneur",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=8080 --open=index.html",
+    "dev": "npm start"
+  },
+  "keywords": [
+    "portfolio",
+    "personal-website"
+  ],
+  "author": "Jatin Singhi",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
