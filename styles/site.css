@@ -244,20 +244,6 @@ html.dark .jj-theme-sun {
   color: var(--ga-fg2);
 }
 
-/* The highlighter flag: a solid strip, 4px radius. Not a pill - a pill reads
-   as metadata, and this is the loudest fact on the page. */
-.jj-hero-flag {
-  display: inline-block;
-  margin: var(--ga-space-3) 0 0;
-  padding: 3px 12px 4px;
-  border-radius: var(--ga-r-xs);
-  background: var(--ga-success);
-  color: #fff;
-  font-size: var(--ga-text-xl);
-  font-weight: var(--ga-weight-medium);
-  line-height: var(--ga-lh-snug);
-}
-
 .jj-hero-points {
   list-style: none;
   margin: var(--ga-space-6) 0 0;
@@ -314,7 +300,6 @@ html.dark .jj-theme-sun {
   .jj-hero[data-enter] .jj-hero-title,
   .jj-hero[data-enter] .jj-eyebrow,
   .jj-hero[data-enter] .jj-hero-bio,
-  .jj-hero[data-enter] .jj-hero-flag,
   .jj-hero[data-enter] .jj-hero-points,
   .jj-hero[data-enter] .jj-actions,
   .jj-hero[data-enter] .jj-portrait {
@@ -324,9 +309,8 @@ html.dark .jj-theme-sun {
   .jj-hero[data-enter] .jj-hero-title  { animation-delay: 0.07s; }
   .jj-hero[data-enter] .jj-eyebrow     { animation-delay: 0.12s; }
   .jj-hero[data-enter] .jj-hero-bio    { animation-delay: 0.16s; }
-  .jj-hero[data-enter] .jj-hero-flag   { animation-delay: 0.23s; }
-  .jj-hero[data-enter] .jj-hero-points { animation-delay: 0.27s; }
-  .jj-hero[data-enter] .jj-actions     { animation-delay: 0.30s; }
+  .jj-hero[data-enter] .jj-hero-points { animation-delay: 0.21s; }
+  .jj-hero[data-enter] .jj-actions     { animation-delay: 0.25s; }
   .jj-hero[data-enter] .jj-portrait    { animation-delay: 0.16s; }
 
   @keyframes jj-rise {
@@ -658,10 +642,6 @@ a.jj-row-name:hover {
 
   .jj-row-right {
     gap: var(--ga-space-2);
-  }
-
-  .jj-hero-flag {
-    font-size: var(--ga-text-lg);
   }
 
   .jj-actions .ga-key {
